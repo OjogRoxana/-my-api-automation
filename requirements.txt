@@ -1,0 +1,9 @@
+requests
+pytest
+pytest-html
+pytest-dotenv
+faker
+jsonschema
+python-dotenv
+playwright
+pytest-playwright
