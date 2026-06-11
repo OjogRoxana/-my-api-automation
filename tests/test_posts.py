@@ -1,3 +1,4 @@
+import time
 import pytest
 from faker import Faker
 import jsonschema
@@ -170,7 +171,7 @@ def test_get_post_id_zero_returns_404(posts_api):
 
 @pytest.mark.api
 def test_response_time_is_acceptable(posts_api):
-    import time
     start = time.time()
     posts_api.get_post(1)
     assert time.time() - start < 3.0
+

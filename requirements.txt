@@ -2,7 +2,7 @@ requests
 pytest
 pytest-html
 pytest-dotenv
-faker
+faker==40.23.0
 jsonschema
 python-dotenv
 playwright
