@@ -12,3 +12,12 @@ class BaseClient:
 
     def post(self, endpoint, payload):
         return self.session.post(f"{self.base_url}{endpoint}", json=payload, timeout=TIMEOUT)
+
+    def put(self, endpoint, payload):
+        return self.session.put(f"{self.base_url}{endpoint}", json=payload, timeout=TIMEOUT)
+
+    def patch(self, endpoint, payload):
+        return self.session.patch(f"{self.base_url}{endpoint}", json=payload, timeout=TIMEOUT)
+
+    def delete(self, endpoint):
+        return self.session.delete(f"{self.base_url}{endpoint}", timeout=TIMEOUT)
