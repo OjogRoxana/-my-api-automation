@@ -14,4 +14,4 @@ def test_invalid_login_shows_error(page):
     login = LoginPage(page)
     login.navigate()
     login.login("wrong_user", "wrong_pass")
-    assert ("Username and password do not match" in login.get_error_message())
+    assert "Username and password do not match" in login.get_error_message()
