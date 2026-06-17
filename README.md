@@ -20,7 +20,7 @@ Full-stack test automation framework built with Python, Pytest, Playwright, and 
 
 ## Tech stack
 
-- Python 3.11
+- Python 3.14
 - Pytest
 - Playwright
 - Requests
