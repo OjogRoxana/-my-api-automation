@@ -17,7 +17,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.14"
 
       - name: Install dependencies
         run: pip install -r requirements.txt
@@ -27,6 +27,9 @@ jobs:
 
       - name: Run API tests
         run: pytest tests/ -m api -v --html=reports/api-report.html
+
+      - name: Run UI tests
+        run: pytest tests/ -m ui -v --html=reports/ui-report.html
 
       - name: Upload test reports
         uses: actions/upload-artifact@v4
