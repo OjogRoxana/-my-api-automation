@@ -54,3 +54,25 @@ def test_full_checkout_flow_completes_order(logged_in_page):
     checkout.finish_order()
 
     assert "Thank you for your order" in checkout.get_confirmation_message()
+
+@pytest.mark.ui
+def test_logout_redirects_to_login_page(logged_in_page):
+    inventory = InventoryPage(logged_in_page)
+    inventory.logout()
+    assert logged_in_page.url == "https://www.saucedemo.com/"
+
+@pytest.mark.ui
+def test_logout_clears_session_back_button_blocked(logged_in_page):
+    inventory = InventoryPage(logged_in_page)
+    inventory.logout()
+    logged_in_page.go_back()
+    # SauceDemo's broken session handling: going back doesn't restore inventory access
+    # A logged-out user should not see protected inventory items
+    assert "inventory.html" not in logged_in_page.url or logged_in_page.locator(".inventory_item").count() == 0
+
+@pytest.mark.ui
+def test_login_page_loads_after_logout(logged_in_page):
+    inventory = InventoryPage(logged_in_page)
+    inventory.logout()
+    login_button = logged_in_page.locator("#login-button")
+    assert login_button.is_visible()
