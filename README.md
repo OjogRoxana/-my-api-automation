@@ -1,5 +1,6 @@
 # -my-api-automation
 Full-stack test automation framework | Python · Pytest · Playwright · Requests · API &amp; UI testing | Learning project
+[![CI - Run Tests](https://github.com/OjogRoxana/-my-api-automation/actions/workflows/ci.yml/badge.svg)](https://github.com/OjogRoxana/-my-api-automation/actions/workflows/ci.yml)
 # my-api-automation
 
 Full-stack test automation framework built with Python, Pytest, Playwright, and Requests — covering both REST API testing and UI end-to-end testing.
