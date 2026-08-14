@@ -175,3 +175,46 @@ def test_response_time_is_acceptable(posts_api):
     posts_api.get_post(1)
     assert time.time() - start < 3.0
 
+import pytest
+
+# ── Basic parametrize — test multiple post IDs ──────────
+
+@pytest.mark.api
+@pytest.mark.parametrize("post_id", [1, 5, 50, 100])
+def test_get_valid_post_returns_200(posts_api, post_id):
+    response = posts_api.get_post(post_id)
+    assert response.status_code == 200
+
+# ── Parametrize with multiple arguments ─────────────────
+
+@pytest.mark.api
+@pytest.mark.parametrize("post_id, expected_user_id", [
+    (1, 1),
+    (11, 2),
+    (21, 3),
+])
+def test_post_belongs_to_correct_user(posts_api, post_id, expected_user_id):
+    response = posts_api.get_post(post_id)
+    assert response.json()["userId"] == expected_user_id
+
+# ── Parametrize negative cases — invalid IDs ────────────
+
+@pytest.mark.api
+@pytest.mark.parametrize("invalid_id", [0, -1, 99999, 999999])
+def test_invalid_post_id_returns_404(posts_api, invalid_id):
+    response = posts_api.get_post(invalid_id)
+    assert response.status_code == 404
+
+# ── Parametrize create post with different payloads ─────
+
+@pytest.mark.api
+@pytest.mark.parametrize("title, body, user_id", [
+    ("Short title", "Short body", 1),
+    ("A" * 100, "B" * 500, 2),       # long strings
+    ("Title with symbols !@#", "Body text", 3),
+    ("  spaces around  ", "body", 4), # edge case: whitespace
+])
+def test_create_post_various_payloads(posts_api, title, body, user_id):
+    payload = {"title": title, "body": body, "userId": user_id}
+    response = posts_api.create_post(payload)
+    assert response.status_code == 201

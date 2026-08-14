@@ -24,3 +24,10 @@ def todos_api():
 @pytest.fixture
 def albums_api():
     return AlbumsAPI()
+
+# Reusable valid post IDs for parametrize
+VALID_POST_IDS = [1, 10, 50, 100]
+INVALID_POST_IDS = [0, -1, 99999]
+
+def pytest_configure(config):
+    config.addinivalue_line("markers", "parametrize: parametrized test cases")
