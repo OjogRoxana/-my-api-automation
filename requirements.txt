@@ -7,3 +7,4 @@ jsonschema
 python-dotenv
 playwright
 pytest-playwright
+pytest_cov

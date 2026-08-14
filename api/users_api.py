@@ -15,3 +15,5 @@ class UsersAPI(BaseClient):
 
     def get_user_albums(self, user_id):
         return self.get(f"/users/{user_id}/albums")
+
+   

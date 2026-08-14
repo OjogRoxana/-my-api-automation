@@ -1,0 +1,10 @@
+[run]
+omit =
+    .venv/*
+    tests/*
+    reports/*
+    */__init__.py
+
+[report]
+show_missing = True
+skip_empty = True

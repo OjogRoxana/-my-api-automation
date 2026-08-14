@@ -26,7 +26,13 @@ jobs:
         run: playwright install --with-deps chromium
 
       - name: Run API tests
-        run: pytest tests/ -m api -v --html=reports/api-report.html
+        run: pytest tests/ -m api -v --cov=. --cov-report=xml --cov-report=term-missing --html=reports/api-report.html
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          file: ./coverage.xml
+          fail_ci_if_error: false
 
       - name: Run UI tests
         run: pytest tests/ -m ui -v --html=reports/ui-report.html
@@ -37,3 +43,4 @@ jobs:
         with:
           name: test-reports
           path: reports/
+
