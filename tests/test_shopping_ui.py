@@ -75,4 +75,5 @@ def test_login_page_loads_after_logout(logged_in_page):
     inventory = InventoryPage(logged_in_page)
     inventory.logout()
     login_button = logged_in_page.locator("#login-button")
+    login_button.wait_for(state="visible", timeout=10000)
     assert login_button.is_visible()

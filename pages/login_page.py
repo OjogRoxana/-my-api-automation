@@ -1,5 +1,6 @@
 from playwright.sync_api import Page
 
+
 class LoginPage:
     def __init__(self, page: Page):
         self.page = page
@@ -10,6 +11,7 @@ class LoginPage:
 
     def navigate(self):
         self.page.goto("https://www.saucedemo.com")
+        self.login_button.wait_for(state="visible", timeout=10000)
 
     def login(self, username, password):
         self.username_input.fill(username)
